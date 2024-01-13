@@ -1,7 +1,7 @@
 {
-  "name": "express-typescript-boilerplate",
-  "version": "1.0.0",
-  "description": "An Express.js boilerplate backend",
+  "name": "todo-postgres-backend",
+  "version": "0.1.0",
+  "description": "Backend for todo-postgres app",
   "main": "index.ts",
   "scripts": {
     "pretty": "pino-pretty",
