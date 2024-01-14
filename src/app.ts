@@ -9,6 +9,7 @@ import { pino } from 'pino';
 import { compressFilter, errorHandler, rateLimiter, requestLogger } from '@common/middleware';
 import { getCorsOrigin } from '@common/utils/envConfig';
 import { router } from '@src/api';
+import { AppDataSource } from '@src/data-source';
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -19,7 +20,16 @@ const logger = pino({
 });
 
 const app: Express = express();
-const corsOrigin = getCorsOrigin();
+const corsOrigin: string = getCorsOrigin();
+
+AppDataSource.initialize()
+  .then(() => {
+    logger.info(`Data Source has been initialized!`);
+  })
+  .catch((err) => {
+    console.log(err);
+    logger.error('Error during Data Source initialization:', err);
+  });
 
 // Middlewares
 app.use(cors({ origin: [corsOrigin], credentials: true }));

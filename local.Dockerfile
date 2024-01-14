@@ -7,11 +7,12 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install global and app dependencies
-RUN npm install -g typescript tsx
-RUN npm install
+RUN yarn global add typescript
+RUN yarn global add tsx
+RUN yarn install
 
 # Bundle app source
-COPY express-typescript-2024 .
+COPY . .
 
 RUN chmod +x /app/scripts/docker/local-run.sh
 

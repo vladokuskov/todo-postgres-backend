@@ -7,17 +7,18 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install global and app dependencies
-RUN npm install -g typescript tsx
-RUN npm install
+RUN yarn global add typescript
+RUN yarn global add tsx
+RUN yarn install
 
 # Bundle app source
-COPY express-typescript-2024 .
+COPY . .
 
 # Build the TypeScript files
-RUN npm run build
+RUN yarn build
 
 # Expose port 8080
 EXPOSE 8080
 
 # Start the app
-CMD npm run start
+CMD yarn start

@@ -19,9 +19,13 @@
   "plugins": ["simple-import-sort", "@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
-    "no-console": "warn",
     "simple-import-sort/exports": "error",
     "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "camelcase": "warn",
+    "require-await": "off",
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "no-duplicate-imports": "off",
     "simple-import-sort/imports": [
       "error",
       {
