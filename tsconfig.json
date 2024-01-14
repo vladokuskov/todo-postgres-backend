@@ -16,6 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noPropertyAccessFromIndexSignature": false,
+    "experimentalDecorators": true,
     "skipLibCheck": true,
     "ignoreDeprecations": "5.0",
     "typeRoots": ["@types", "./node_modules/@types"]
