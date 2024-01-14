@@ -1,41 +1,20 @@
-import compression from 'compression';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import express, { Express } from 'express';
-import helmet from 'helmet';
-import path from 'path';
-import { pino } from 'pino';
+import { getPort } from '@common/utils/envConfig';
+import { app, logger } from '@src/app';
 
-import { compressFilter, errorHandler, rateLimiter, requestLogger } from '@common/middleware';
-import { getCorsOrigin } from '@common/utils/envConfig';
-import { healthCheckRouter } from '@modules/healthCheck/healthCheckRoutes';
-import { usersRouter } from '@modules/user/userRoutes';
+const port = getPort();
 
-dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
+const server = app.listen(port, () => {
+  logger.info(`Server listening on port ${port}`);
 });
 
-const logger = pino({
-  name: 'server start',
-});
+const onCloseSignal = () => {
+  logger.info('Sigint received, shutting down');
+  server.close(() => {
+    logger.info('Server closed');
+    process.exit();
+  });
+  setTimeout(() => process.exit(1), 10000).unref(); // Force shutdown after 10s
+};
 
-const app: Express = express();
-const corsOrigin = getCorsOrigin();
-
-// Middlewares
-app.use(cors({ origin: [corsOrigin], credentials: true }));
-app.use(helmet());
-app.use(compression({ filter: compressFilter }));
-app.use(rateLimiter);
-
-// Request logging
-app.use(requestLogger());
-
-// Routes
-app.use('/health-check', healthCheckRouter);
-app.use('/users', usersRouter);
-
-// Error handlers
-app.use(errorHandler());
-
-export { app, logger };
+process.on('SIGINT', onCloseSignal);
+process.on('SIGTERM', onCloseSignal);

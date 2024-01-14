@@ -24,7 +24,7 @@ Below are Scripts that can be ran and found in package.json file
 │   ├── middleware
 │   │   ├── compressFilter.ts
 │   │   ├── errorHandler.ts
-│   │   ├── index.ts
+│   │   ├── server.ts
 │   │   ├── rateLimiter.ts
 │   │   └── requestLogger.ts
 │   ├── models
@@ -33,7 +33,7 @@ Below are Scripts that can be ran and found in package.json file
 │       ├── compressFilter.ts
 │       ├── envConfig.ts
 │       └── responseHandler.ts
-├── index.ts
+├── server.ts
 ├── modules
 │   ├── healthCheck
 │   │   ├── healthCheckController.ts
@@ -42,13 +42,13 @@ Below are Scripts that can be ran and found in package.json file
 │   │       └── healthCheckRoutes.test.ts
 │   └── user
 │       ├── tests
-│       │   └── userRoutes.test.ts
-│       ├── userController.ts
-│       ├── userModel.ts
-│       ├── userRepository.ts
-│       ├── userRoutes.ts
-│       └── userService.ts
-└── server.ts
+│       │   └── todoRoutes.test.ts
+│       ├── todoController.ts
+│       ├── todoModel.ts
+│       ├── todoRepository.ts
+│       ├── todoRoutes.ts
+│       └── todoService.ts
+└── app.ts
 
 10 directories, 19 files
 ```

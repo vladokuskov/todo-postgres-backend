@@ -1,7 +1,7 @@
 import request from 'supertest';
 
 import { ServiceResponse } from '@common/models/serviceResponse';
-import { app } from '@src/server';
+import { app } from '@src/app';
 
 describe('Health Check API endpoints', () => {
   it('GET / - success', async () => {

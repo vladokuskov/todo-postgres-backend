@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "pretty": "pino-pretty",
-    "dev": "tsx watch --clear-screen=false src/index.ts | npm run pretty",
+    "dev": "tsx watch --clear-screen=false src/server.ts | npm run pretty",
     "build": "rimraf build && tsc",
     "start": "NODE_ENV=production npm run build && tsx build/index.js | npm run pretty",
     "lint": "eslint 'src/**/*.{ts,js}'",
