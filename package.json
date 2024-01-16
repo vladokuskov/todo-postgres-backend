@@ -17,7 +17,9 @@
     "prepare": "husky install",
     "docker:build": "docker-compose build --no-cache",
     "docker:start": "docker-compose up",
-    "docker:stop": "docker-compose down"
+    "docker:stop": "docker-compose down",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration": " npm run typeorm migration:run -- -d ./src/data-source.ts"
   },
   "dependencies": {
     "compression": "^1.7.4",
@@ -29,6 +31,8 @@
     "helmet": "^7.1.0",
     "pg": "^8.11.3",
     "pino-http": "^9.0.0",
+    "reflect-metadata": "^0.2.1",
+    "ts-node": "^10.9.2",
     "typeorm": "^0.3.19"
   },
   "devDependencies": {

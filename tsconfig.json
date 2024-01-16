@@ -7,6 +7,7 @@
     "paths": {
       "@modules/*": ["./src/modules/*"],
       "@common/*": ["./src/common/*"],
+      "@entities/*": ["./src/entities/*"],
       "@src/*": ["./src/*"]
     },
     "moduleResolution": "Node",
@@ -18,6 +19,7 @@
     "noPropertyAccessFromIndexSignature": false,
     "experimentalDecorators": true,
     "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
     "ignoreDeprecations": "5.0",
     "typeRoots": ["@types", "./node_modules/@types"]
   },

@@ -1,21 +1,24 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'todos' })
 export class Todo {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ nullable: false, unique: true, length: 200 })
-  name!: string;
+  @Column({ nullable: false, unique: true, type: 'text' })
+  title!: string;
 
-  @Column({ nullable: false, unique: false })
+  @Column({ nullable: false, unique: false, type: 'text' })
   description?: string;
 
-  @CreateDateColumn({ nullable: false })
+  @Column({ nullable: false, type: 'date' })
   dueDate?: Date;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'boolean', default: false })
   isCompleted?: boolean;
+
+  @Column({ nullable: false, type: 'boolean', default: false })
+  isDeleted?: boolean;
 
   @CreateDateColumn({ nullable: false })
   createdAt!: Date;

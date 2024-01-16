@@ -1,35 +1,14 @@
-import { Todo } from '@modules/todo/todoModel';
+import { AppDataSource } from '@src/data-source';
+import { Todo } from '@src/entities/Todo';
 
 export interface ITodoRepository {
   findAllAsync(): Promise<Todo[]>;
 }
 
-const todos: Todo[] = [
-  {
-    id: '1',
-    name: 'Complete Assignment',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: '2',
-    name: 'Read Book',
-    description: "Finish the last chapter of 'The Great Gatsby.'",
-    dueDate: new Date('2024-01-31'),
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: '3',
-    name: 'Exercise',
-    isCompleted: true,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-];
-
 export class TodoRepository implements ITodoRepository {
+  todosRepo = AppDataSource.getRepository(Todo);
+
   public async findAllAsync() {
-    return todos || [];
+    return await this.todosRepo.find();
   }
 }
