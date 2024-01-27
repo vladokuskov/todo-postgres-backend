@@ -20,5 +20,8 @@ RUN yarn build
 # Expose port 8080
 EXPOSE 8080
 
+# Run migrations
+CMD yarn typeorm migration:run -d build/db/data-source.js
+
 # Start the app
 CMD yarn start

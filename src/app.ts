@@ -9,7 +9,7 @@ import { pino } from 'pino';
 import { compressFilter, errorHandler, rateLimiter, requestLogger } from '@common/middleware';
 import { getCorsOrigin } from '@common/utils/envConfig';
 import { router } from '@src/api';
-import { AppDataSource } from '@src/data-source';
+import { AppDataSource } from '@src/db/data-source';
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),

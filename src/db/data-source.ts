@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
 
   logging: process.env.NODE_ENV === 'development',
   synchronize: process.env.NODE_ENV === 'development' ? false : false,
-  entities: [__dirname + '/entities/*.ts'],
-  migrations: [__dirname + '/migrations/*.ts'],
+  entities: [__dirname + '/../entities/*.ts'],
+  migrations: [__dirname + '/../migrations/*.ts'],
   subscribers: [],
 });

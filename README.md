@@ -46,7 +46,7 @@ Below are Scripts that can be ran and found in package.json file
 │       ├── todoController.ts
 │       ├── todoModel.ts
 │       ├── todoRepository.ts
-│       ├── todoRoutes.ts
+│       ├── authRoutes.ts
 │       └── todoService.ts
 └── app.ts
 

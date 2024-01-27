@@ -1,7 +1,8 @@
+import { Todo } from '@entities/Todo';
+
 import { ServiceResponse } from '@common/models/serviceResponse';
-import { Todo } from '@modules/todo/todoModel';
-import { todosRepo } from '@modules/todo/todoRepository';
 import { logger } from '@src/app';
+import { queryRunner } from '@src/shared/queryRunner';
 
 export interface ITodoService {
   findAll(): Promise<ServiceResponse<Todo[] | null>>;
@@ -10,7 +11,8 @@ export interface ITodoService {
 export class TodoService implements ITodoService {
   public async findAll() {
     try {
-      const todos = await todosRepo.find();
+      const todos = await queryRunner.todos.find();
+
       return new ServiceResponse<Todo[]>(true, 'Todos found.', todos);
     } catch (err) {
       logger.error(err);
