@@ -1,8 +1,8 @@
-import { Todo } from '@entities/Todo';
+import { Todo } from '@db/entities/Todo';
+import { queryRunner } from '@db/queryRunner';
 
 import { ServiceResponse } from '@common/models/serviceResponse';
 import { logger } from '@src/app';
-import { queryRunner } from '@src/shared/queryRunner';
 
 export interface ITodoService {
   findAll(): Promise<ServiceResponse<Todo[] | null>>;

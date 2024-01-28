@@ -1,8 +1,8 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'todos' })
 export class Todo {
-  @PrimaryGeneratedColumn('uuid')
+  @Column({ type: 'integer', primary: true, generated: 'uuid' })
   id!: string;
 
   @Column({ nullable: false, unique: true, type: 'text' })

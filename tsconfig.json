@@ -7,7 +7,7 @@
     "paths": {
       "@modules/*": ["./src/modules/*"],
       "@common/*": ["./src/common/*"],
-      "@entities/*": ["./src/entities/*"],
+      "@db/*": ["./src/db/*"],
       "@src/*": ["./src/*"]
     },
     "moduleResolution": "Node",

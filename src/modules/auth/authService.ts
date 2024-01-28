@@ -1,26 +1,46 @@
-import { User } from '@entities/User';
+import { queryRunner } from '@db/queryRunner';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import * as process from 'process';
 
 import { ServiceResponse } from '@common/models/serviceResponse';
 import { logger } from '@src/app';
-import { queryRunner } from '@src/shared/queryRunner';
 
 export interface IAuthService {
-  login(): Promise<ServiceResponse<any[] | null>>;
+  login(email: string | null, password: string | null): Promise<ServiceResponse<any | null>>;
   register(): Promise<ServiceResponse<any[] | null>>;
   logout(): Promise<ServiceResponse<any[] | null>>;
 }
 
 export class AuthService implements IAuthService {
-  public async login() {
+  private SECRET_JWT_KEY = process.env.SECRET_JWT_KEY as string;
+
+  public async login(email: string | null, password: string | null) {
     try {
-      const user = queryRunner.users.create(new User());
-      user.email = 'advance11ua@gmail.com';
-      user.name = '123';
-      await queryRunner.users.save(user);
-      return new ServiceResponse<any[]>(true, 'Logged in successfully.', []);
+      if (!email || !password) {
+        return new ServiceResponse(false, 'Email and password are required', []);
+      }
+
+      const existingUser = await queryRunner.users.findOne({ where: { email } });
+
+      if (!existingUser) {
+        return new ServiceResponse(false, 'User not found', []);
+      }
+
+      const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+
+      if (!isPasswordValid) {
+        return new ServiceResponse(false, 'Incorrect password', []);
+      }
+
+      const token = jwt.sign({ id: existingUser.id }, this.SECRET_JWT_KEY, {
+        expiresIn: '7d',
+      });
+
+      return new ServiceResponse(true, 'Logged in successfully', { token });
     } catch (err) {
       logger.error(err);
-      return new ServiceResponse<any[]>(false, 'Logged in unsuccessfully.', []);
+      return new ServiceResponse(false, 'Failed to login', []);
     }
   }
 

@@ -1,3 +1,4 @@
+import { AppDataSource } from '@db/dataSource';
 import compression from 'compression';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -9,7 +10,6 @@ import { pino } from 'pino';
 import { compressFilter, errorHandler, rateLimiter, requestLogger } from '@common/middleware';
 import { getCorsOrigin } from '@common/utils/envConfig';
 import { router } from '@src/api';
-import { AppDataSource } from '@src/db/data-source';
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -38,6 +38,8 @@ app.use(rateLimiter);
 
 // Request logging
 app.use(requestLogger());
+
+app.use(express.json());
 
 // Routes
 app.use(router);

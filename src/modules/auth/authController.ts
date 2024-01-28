@@ -10,18 +10,19 @@ export class AuthController {
     this._service = service;
   }
 
-  loginUser = async (_: Request, response: Response) => {
-    const serviceResponse = await this._service.login();
+  loginUser = async (req: Request, response: Response) => {
+    const { email, password } = req.body;
+    const serviceResponse = await this._service.login(email, password);
     handleServiceResponse(serviceResponse, response);
   };
 
   registerUser = async (_: Request, response: Response) => {
-    const serviceResponse = await this._service.login();
+    const serviceResponse = await this._service.register();
     handleServiceResponse(serviceResponse, response);
   };
 
   logoutUser = async (_: Request, response: Response) => {
-    const serviceResponse = await this._service.login();
+    const serviceResponse = await this._service.logout();
     handleServiceResponse(serviceResponse, response);
   };
 }

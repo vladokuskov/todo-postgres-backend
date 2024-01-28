@@ -5,11 +5,14 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ nullable: false, unique: true, type: 'text', default: 'User' })
-  name?: string;
+  @Column({ nullable: false, unique: true, type: 'text' })
+  email!: string;
 
   @Column({ nullable: false, unique: false, type: 'text' })
-  email!: string;
+  password!: string;
+
+  @Column({ nullable: false, unique: false, type: 'text', default: 'User' })
+  name?: string;
 
   @CreateDateColumn({ nullable: false })
   createdAt!: Date;

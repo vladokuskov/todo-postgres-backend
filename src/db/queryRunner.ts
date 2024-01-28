@@ -1,7 +1,6 @@
-import { Todo } from '@entities/Todo';
-import { User } from '@entities/User';
-
-import { AppDataSource } from '@src/db/data-source';
+import { AppDataSource } from '@db/dataSource';
+import { Todo } from '@db/entities/Todo';
+import { User } from '@db/entities/User';
 
 class QueryRunner {
   public users = AppDataSource.getRepository(User);
