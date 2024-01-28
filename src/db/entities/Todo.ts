@@ -1,8 +1,8 @@
-import { Column, CreateDateColumn, Entity, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity({ name: 'todos' })
 export class Todo {
-  @Column({ type: 'integer', primary: true, generated: 'uuid' })
+  @PrimaryGeneratedColumn('uuid')
   id!: string;
 
   @Column({ nullable: false, unique: true, type: 'text' })
@@ -11,8 +11,8 @@ export class Todo {
   @Column({ nullable: false, unique: false, type: 'text' })
   description?: string;
 
-  @Column({ nullable: false, type: 'date' })
-  dueDate?: Date;
+  @Column({ nullable: true, type: 'date', default: null })
+  dueDate?: Date | null;
 
   @Column({ nullable: false, type: 'boolean', default: false })
   isCompleted?: boolean;

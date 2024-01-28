@@ -12,7 +12,7 @@ export class User {
   password!: string;
 
   @Column({ nullable: false, unique: false, type: 'text', default: 'User' })
-  name?: string;
+  username?: string;
 
   @CreateDateColumn({ nullable: false })
   createdAt!: Date;

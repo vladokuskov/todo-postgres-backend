@@ -16,8 +16,9 @@ export class AuthController {
     handleServiceResponse(serviceResponse, response);
   };
 
-  registerUser = async (_: Request, response: Response) => {
-    const serviceResponse = await this._service.register();
+  registerUser = async (req: Request, response: Response) => {
+    const { email, password, username } = req.body;
+    const serviceResponse = await this._service.register({ email, password, username });
     handleServiceResponse(serviceResponse, response);
   };
 
